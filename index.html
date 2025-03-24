@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First Aid AI</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-heartbeat"></i> AidBot by Priyanshu </h1>
+            <p>Get instant first aid remedies for emergencies</p>
+        </header>
+        
+        <main>
+            <div class="search-container">
+                <div class="input-group">
+                    <input type="text" id="search-input" placeholder="Describe injury or symptoms..." aria-label="Search for first aid remedies">
+                    <button id="voice-input" aria-label="Use voice input">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+                <button id="search-button" class="primary-button">
+                    <i class="fas fa-search"></i> Find Remedy
+                </button>
+                <div id="voice-feedback" class="hidden">Listening...</div>
+            </div>
+            
+            <div id="typo-suggestion" class="hidden">
+                <p>Did you mean: <span id="suggested-term"></span>?</p>
+            </div>
+            
+            <div id="results-container" class="hidden">
+                <h2 id="injury-title"></h2>
+                <div id="remedy-content"></div>
+            </div>
+            
+            <div id="no-results" class="hidden">
+                <h2>No Results Found</h2>
+                <p>Try searching for common injuries or symptoms like:</p>
+                <ul id="suggestion-list">
+                    <li>Cuts</li>
+                    <li>Burns</li>
+                    <li>Nosebleed</li>
+                    <li>Sprain</li>
+                    <li>Choking</li>
+                </ul>
+            </div>
+        </main>
+        
+        <footer>
+            <p><strong>Disclaimer:</strong> This app provides basic first aid information only. Always seek professional medical help in emergencies.</p>
+            <p class="copyright">© 2025 Priyanshu Shakya</p>
+        </footer>
+    </div>
+    
+    <!-- Embed the data directly in the HTML as a fallback -->
+    <script type="application/json" data-json="first-aid-data">
+    [
+        {
+          "injury": "Cuts and Scrapes",
+          "keywords": ["cut", "scrape", "bleeding", "wound", "blood"],
+          "remedy": "<p>For minor cuts and scrapes:</p><ol><li>Wash your hands with soap and water.</li><li>Rinse the wound under clean running water to remove debris and bacteria.</li><li>Clean around the wound with mild soap and water.</li><li>Apply gentle pressure with a clean cloth or bandage to stop bleeding.</li><li>Apply an antibiotic ointment to prevent infection.</li><li>Cover with a sterile bandage.</li><li>Change the bandage daily and keep the wound clean.</li></ol><p><strong>Seek medical attention if:</strong></p><ul><li>The cut is deep or has jagged edges</li><li>The bleeding doesn't stop after 10-15 minutes of pressure</li><li>The wound is from a dirty or rusty object</li><li>There is significant redness, swelling, or pus</li><li>You haven't had a tetanus shot in the last 5 years</li></ul>"
+        },
+        {
+          "injury": "Burns",
+          "keywords": ["burn", "scalding", "fire", "hot", "skin burn"],
+          "remedy": "<p>For minor burns (1st degree or small 2nd degree):</p><ol><li>Cool the burn immediately with cool (not cold) running water for 10-15 minutes.</li><li>Do not use ice as it can damage the tissue.</li><li>Remove jewelry or tight items from the burned area before swelling occurs.</li><li>Apply a gentle moisturizer or aloe vera gel to soothe the skin.</li><li>If needed, take over-the-counter pain relievers like ibuprofen or acetaminophen.</li><li>Cover with a sterile, non-stick bandage.</li></ol><p><strong>Do NOT:</strong></p><ul><li>Break blisters (increases risk of infection)</li><li>Apply butter, oil, or ointments (can trap heat)</li><li>Use cotton balls (fibers can stick to the burn)</li></ul><p><strong>Seek immediate medical attention for:</strong></p><ul><li>Burns larger than 3 inches (7.5 cm) in diameter</li><li>Third-degree burns (charred skin, white or brown areas)</li><li>Burns on the face, hands, feet, genitals, or major joints</li><li>Chemical or electrical burns</li></ul>"
+        },
+        {
+          "injury": "Nosebleed",
+          "keywords": ["nosebleed", "bloody nose", "nasal bleeding", "nosbleed"],
+          "remedy": "<p>To treat a nosebleed:</p><ol><li>Sit down and lean slightly forward (not backward).</li><li>Pinch the soft part of your nose shut for 10-15 minutes.</li><li>Breathe through your mouth.</li><li>Apply a cold compress to the bridge of your nose.</li><li>Stay upright to reduce blood pressure in the nasal veins.</li><li>After bleeding stops, avoid picking or blowing your nose for several hours.</li></ol><p><strong>Seek medical attention if:</strong></p><ul><li>Bleeding doesn't stop after 20-30 minutes of pressure</li><li>The nosebleed follows a head injury</li><li>You're taking blood thinners</li><li>You have frequent nosebleeds</li><li>There is a large amount of blood loss or you feel dizzy</li></ul>"
+        },
+        {
+          "injury": "Sprain",
+          "keywords": ["sprain", "twisted ankle", "wrist sprain", "joint pain", "swollen joint"],
+          "remedy": "<p>To treat a sprain, follow the R.I.C.E. method:</p><ol><li><strong>Rest:</strong> Avoid using the injured area for 24-48 hours.</li><li><strong>Ice:</strong> Apply ice for 15-20 minutes every 2-3 hours for the first 48 hours.</li><li><strong>Compression:</strong> Use an elastic bandage to reduce swelling, but not too tight.</li><li><strong>Elevation:</strong> Keep the injured limb above heart level when possible.</li></ol><p>Additional recommendations:</p><ul><li>Take over-the-counter pain relievers like ibuprofen to reduce pain and inflammation.</li><li>After 48 hours, gentle heat can be applied to increase circulation and healing.</li><li>Begin gentle movement after the initial swelling subsides.</li></ul><p><strong>Seek medical attention if:</strong></p><ul><li>You cannot put weight on the injured joint</li><li>The joint looks deformed</li><li>There is severe swelling or bruising</li><li>Pain is intense and doesn't improve with rest</li><li>You heard a popping sound at the time of injury</li></ul>"
+        },
+        {
+          "injury": "Choking",
+          "keywords": ["choking", "obstruction", "can't breathe", "airway blocked", "heimlich"],
+          "remedy": "<p><strong>For adults and children over 1 year:</strong></p><ol><li>If the person can cough forcefully, encourage them to continue coughing.</li><li>If they cannot cough, speak, or breathe, stand behind them.</li><li>Wrap your arms around their waist.</li><li>Make a fist with one hand and place it above the navel (thumb side in).</li><li>Grab your fist with your other hand.</li><li>Perform quick, upward thrusts into their abdomen until the object is expelled.</li></ol><p><strong>For infants under 1 year:</strong></p><ol><li>Place the infant face down on your forearm, supporting their head.</li><li>Give up to 5 back slaps between the shoulder blades.</li><li>If unsuccessful, turn the infant face up and give up to 5 chest thrusts.</li><li>Repeat until the object is dislodged.</li></ol><p><strong>Call emergency services (911) immediately if:</strong></p><ul><li>The person loses consciousness</li><li>You cannot remove the obstruction</li><li>The person is turning blue</li></ul>"
+        },
+        {
+            "injury": "Bee Sting",
+            "keywords": ["bee sting", "wasp sting", "insect sting", "stinger", "bee bite"],
+            "remedy": "<p>To treat a bee sting:</p><ol><li>Remove the stinger by scraping it with a flat-edged object like a credit card (don't use tweezers).</li><li>Wash the area with soap and water.</li><li>Apply a cold pack wrapped in cloth for 10-20 minutes to reduce swelling and pain.</li><li>Consider applying a paste of baking soda and water to neutralize the venom.</li><li>Take an antihistamine or use hydrocortisone cream to reduce itching and swelling.</li><li>Over-the-counter pain relievers can help with discomfort.</li></ol><p><strong>Seek emergency medical help immediately if the person develops:</strong></p><ul><li>Difficulty breathing</li><li>Swelling of the face, throat, or mouth</li><li>Rapid heartbeat</li><li>Dizziness or fainting</li><li>Hives or severe swelling beyond the sting site</li></ul><p>These could be signs of a severe allergic reaction (anaphylaxis) and require immediate medical attention.</p>"
+          },
+          {
+            "injury": "Heat Exhaustion",
+            "keywords": ["heat exhaustion", "overheated", "heat illness", "hot", "dehydration"],
+            "remedy": "<p>To treat heat exhaustion:</p><ol><li>Move the person to a cool, shaded area.</li><li>Remove excess clothing.</li><li>Cool the person with cold compresses or a cool bath.</li><li>Fan the person to help lower body temperature.</li><li>Provide cold water or sports drinks (without caffeine or alcohol).</li><li>Have the person lie down and elevate their legs.</li></ol><p><strong>Signs of heat exhaustion:</strong></p><ul><li>Heavy sweating</li><li>Cold, pale, clammy skin</li><li>Fast, weak pulse</li><li>Nausea or vomiting</li><li>Muscle cramps</li><li>Tiredness or weakness</li><li>Dizziness</li><li>Headache</li></ul><p><strong>Seek emergency medical help if:</strong></p><ul><li>Symptoms worsen or last longer than 1 hour</li><li>The person vomits repeatedly</li><li>Body temperature rises above 104°F (40°C)</li><li>The person becomes confused or unconscious</li></ul><p>These could be signs of heat stroke, which is a life-threatening emergency.</p>"
+          },
+          {
+            "injury": "Head Injury",
+            "keywords": ["head injury", "concussion", "head bump", "hit head", "brain injury"],
+            "remedy": "<p>For a minor head injury:</p><ol><li>Apply a cold pack to the injured area for 15-20 minutes to reduce swelling.</li><li>Rest and avoid physical activities.</li><li>Monitor for signs of a more serious injury.</li><li>Take acetaminophen (Tylenol) for pain if needed, but avoid ibuprofen or aspirin as they may increase bleeding risk.</li></ol><p><strong>Seek immediate medical attention if the person:</strong></p><ul><li>Loses consciousness, even briefly</li><li>Has a severe headache or one that worsens</li><li>Experiences repeated vomiting or nausea</li><li>Has seizures</li><li>Shows confusion or unusual behavior</li><li>Has clear fluid draining from ears or nose</li><li>Has slurred speech</li><li>Has weakness or numbness in arms or legs</li><li>Has unequal pupil sizes</li><li>Cannot be awakened</li></ul><p>For 24 hours after a head injury, someone should monitor the injured person and wake them every 2-3 hours if they're sleeping to check their condition.</p>"
+          },
+          {
+            "injury": "Splinter",
+            "keywords": ["splinter", "wooden splinter", "glass splinter", "sliver", "embedded object"],
+            "remedy": "<p>To remove a splinter:</p><ol><li>Clean your hands and the affected area with soap and water.</li><li>Sterilize tweezers and a needle with alcohol.</li><li>If part of the splinter is sticking out, gently grasp it with tweezers at the surface of the skin and pull it out at the same angle it went in.</li><li>If the splinter is embedded, gently scrape the skin with the needle until you expose an edge, then use tweezers to remove it.</li><li>For deep splinters, soak the area in warm water with Epsom salt for 10-15 minutes to help draw it closer to the surface.</li><li>After removal, clean the area with soap and water, apply antibiotic ointment, and cover with a bandage.</li></ol><p><strong>Seek medical attention if:</strong></p><ul><li>The splinter is deeply embedded and you cannot remove it</li><li>The splinter is under a nail</li><li>The area becomes increasingly red, swollen, or painful</li><li>You see signs of infection (pus, warm skin, red streaks)</li><li>The splinter is large or dirty</li><li>You haven't had a tetanus shot in the last 5 years</li></ul>"
+          },
+          {
+            "injury": "Poison Ivy",
+            "keywords": ["poison ivy", "poison oak", "poison sumac", "plant rash", "itchy rash"],
+            "remedy": "<p>For poison ivy, oak, or sumac exposure:</p><ol><li>Immediately rinse the exposed skin with lukewarm water and soap.</li><li>Wash all clothing, shoes, and tools that may have touched the plant.</li><li>Apply cool compresses to the affected area for 15-30 minutes several times a day.</li><li>Use calamine lotion or hydrocortisone cream to reduce itching.</li><li>Take an oral antihistamine like Benadryl to help with itching and sleep.</li><li>Avoid scratching, which can lead to infection.</li><li>Take lukewarm oatmeal baths to soothe the skin.</li></ol><p><strong>The rash typically:</strong></p><ul><li>Appears within 12-72 hours after exposure</li><li>Lasts for 1-3 weeks</li><li>Does not spread through touching the rash or fluid from blisters</li></ul><p><strong>Seek medical attention if:</strong></p><ul><li>The rash covers a large part of your body</li><li>The rash is on your face or genitals</li><li>Blisters are oozing pus</li><li>You develop a fever over 100°F (37.8°C)</li><li>The rash doesn't improve after a week</li><li>You have difficulty breathing</li></ul>"
+          },
+          {
+            "injury": "Dehydration",
+            "keywords": ["dehydration", "thirsty", "dry mouth", "no urine", "lack of water"],
+            "remedy": "<p>To treat mild to moderate dehydration:</p><ol><li>Drink water or oral rehydration solutions like Pedialyte or sports drinks.</li><li>Take small, frequent sips rather than large amounts at once.</li><li>Avoid caffeine and alcohol, which can worsen dehydration.</li><li>For infants and children, use oral rehydration solutions specifically formulated for them.</li><li>Rest in a cool place.</li><li>Eat fruits and vegetables with high water content (watermelon, cucumber, oranges).</li></ol><p><strong>Signs of dehydration:</strong></p><ul><li>Thirst</li><li>Dry or sticky mouth</li><li>Dark yellow urine</li><li>Headache</li><li>Muscle cramps</li><li>Fatigue</li><li>Dizziness</li><li>Decreased urination</li></ul><p><strong>Seek medical attention for severe dehydration if:</strong></p><ul><li>There is extreme thirst</li><li>Irritability or confusion</li><li>Very dry mouth, skin, and mucous membranes</li><li>Little or no urination for 8 hours</li><li>Sunken eyes</li><li>Shriveled skin</li><li>Low blood pressure</li><li>Rapid heartbeat</li><li>Rapid breathing</li><li>Fever</li><li>Delirium or unconsciousness</li></ul>"
+          },
+          {
+            "injury": "Frostbite",
+            "keywords": ["frostbite", "frozen skin", "cold injury", "winter injury", "frozen fingers"],
+            "remedy": "<p>To treat frostbite:</p><ol><li>Move to a warm area as soon as possible.</li><li>Remove wet or tight clothing and jewelry.</li><li>Warm the affected area by immersing it in warm (not hot) water (104-108°F or 40-42°C) for 15-30 minutes.</li><li>For face or ears, use warm compresses.</li><li>Do not rub or massage the affected area as this can cause more damage.</li><li>Do not use direct heat sources like heating pads, radiators, or fires.</li><li>Take over-the-counter pain medications if needed.</li><li>After warming, wrap the area in clean, soft, dry bandages, separating affected toes or fingers.</li></ol><p><strong>Signs of frostbite:</strong></p><ul><li>Cold, numb skin</li><li>Redness, followed by gray/blue discoloration</li><li>Hard or waxy-looking skin</li><li>Blistering in severe cases</li></ul><p><strong>Seek immediate medical attention if:</strong></p><ul><li>The area is completely numb</li><li>The skin appears white, gray, or blistered</li><li>The symptoms don't improve with basic treatment</li><li>There are signs of infection</li><li>The frostbite affects large areas or is on the face, hands, or feet</li></ul>"
+          },
+          {
+            "injury": "Asthma Attack",
+            "keywords": ["asthma", "asthma attack", "wheezing", "can't breathe", "inhaler"],
+            "remedy": "<p>During an asthma attack:</p><ol><li>Help the person sit upright comfortably and stay calm.</li><li>Assist them in using their rescue inhaler (usually albuterol) if available.</li><li>Instruct them to take one puff at a time, with 4-5 deep breaths between puffs.</li><li>Have them repeat this process for up to 3 puffs.</li><li>Remove any obvious triggers (pets, smoke, dust).</li><li>Encourage slow, steady breathing.</li><li>If they have a peak flow meter, help them use it to assess severity.</li></ol><p><strong>Call emergency services (911) immediately if:</strong></p><ul><li>The person's symptoms don't improve after using the inhaler</li><li>The person's lips or fingernails turn blue or gray</li><li>The person has trouble walking or talking</li><li>The person's nostrils flare with breathing</li><li>The skin around their ribs and neck pulls in with each breath</li><li>The person loses consciousness</li></ul><p>While waiting for help, continue to monitor the person and help them use their rescue inhaler every 20 minutes if needed.</p>"
+          },
+          {
+            "injury": "Allergic Reaction",
+            "keywords": ["allergic reaction", "allergy", "hives", "swelling", "food allergy", "anaphylaxis", "peanut allergy", "bee sting reaction", "rash", "itching", "histamine reaction", "allergic shock"],
+            "remedy": "<p>For mild to moderate allergic reactions:</p><ol><li>Take an oral antihistamine like Benadryl (diphenhydramine) or Claritin (loratadine).</li><li>Apply hydrocortisone cream to relieve itching for skin reactions.</li><li>Remove the allergy trigger if possible.</li><li>Apply cold compresses to reduce swelling.</li><li>For food allergies, rinse your mouth and drink water.</li><li>Monitor symptoms closely for any worsening.</li></ol><p><strong>Signs of a severe allergic reaction (anaphylaxis):</strong></p><ul><li>Difficulty breathing or swallowing</li><li>Swelling of the lips, tongue, throat, or face</li><li>Tightness in the chest or throat</li><li>Wheezing or high-pitched breathing sounds</li><li>Dizziness, fainting, or loss of consciousness</li><li>Rapid heartbeat</li><li>Vomiting, diarrhea, or cramping</li><li>Widespread hives or severe itching</li></ul><p><strong>For anaphylaxis:</strong></p><ol><li>Call 911 immediately</li><li>If the person has an epinephrine auto-injector (EpiPen), help them use it</li><li>Have them lie flat with legs elevated (unless breathing is difficult)</li><li>If unconscious and not breathing, begin CPR</li></ol>"
+          },
+          {
+            "injury": "Seizure",
+            "keywords": ["seizure", "convulsion", "epilepsy", "fit", "shaking", "grand mal", "petit mal", "uncontrolled movements", "neurological emergency", "brain storm", "tonic-clonic", "absence seizure"],
+            "remedy": "<p>During a seizure:</p><ol><li>Stay calm and note the time the seizure begins.</li><li>Move furniture or other objects away to prevent injury.</li><li>Gently guide the person to the floor or a flat surface if possible.</li><li>Place something soft under their head.</li><li>Turn them onto their side to prevent choking if fluid or vomit appears.</li><li>Stay with them until the seizure ends.</li><li>After the seizure, help them into a recovery position (on their side).</li><li>Speak calmly and reassuringly as they regain awareness.</li></ol><p><strong>Do NOT:</strong></p><ul><li>Restrain the person</li><li>Put anything in their mouth</li><li>Try to give them food or drink until fully alert</li><li>Move them unless they're in danger</li></ul><p><strong>Call 911 if:</strong></p><ul><li>The seizure lasts longer than 5 minutes</li><li>The person doesn't wake up after the seizure ends</li><li>The person has a second seizure</li><li>The person is injured during the seizure</li><li>The person has difficulty breathing</li><li>The person has a high fever</li><li>The person is pregnant or has diabetes</li><li>This is their first seizure</li></ul>"
+          },
+          {
+            "injury": "Heatstroke",
+            "keywords": ["heatstroke", "loo", "Indian summer", "hyperthermia", "heat exhaustion", "dehydration", "high temperature", "hot weather emergency", "sun exposure", "heat wave", "urban heat", "outdoor workers", "construction heat", "agricultural heat"],
+            "remedy": "<p><strong>Emergency treatment:</strong></p><ol><li>Move to shaded cool area immediately</li><li>Remove excess clothing</li><li>Cool body with wet cloth/spray</li><li>Use fan/AC if available</li><li>Give ORS or coconut water if conscious</li><li>Monitor body temperature</li></ol><p><strong>Critical signs:</strong> Confusion, seizures, unconsciousness, body temp >104°F</p>"
+          },
+          {
+            "injury": "Snake Bite",
+            "keywords": ["snake bite", "cobra", "krait", "viper", "Indian snakes", "rural emergency", "agricultural injury", "forest areas", "monsoon snakes", "venomous", "anti-venom", "wilderness first aid", "farmers", "outdoor workers"],
+            "remedy": "<p><strong>Immediate actions:</strong></p><ol><li>Keep patient calm and still</li><li>Remove jewelry from affected limb</li><li>Immobilize the bitten area</li><li>Note snake's color/pattern</li><li>Transport to hospital with anti-venom</li></ol><p><strong>Myths to avoid:</strong> Cutting wound, sucking venom, applying tourniquet</p>"
+          },
+          {
+            "injury": "Dengue Fever",
+            "keywords": ["dengue", "breakbone fever", "mosquito disease", "tropical disease", "platelet count", "urban dengue", "monsoon illness", "aedes mosquito", "high fever", "muscle pain", "rash", "prevention", "symptoms"],
+            "remedy": "<p><strong>Management:</strong></p><ol><li>Monitor temperature 4-hourly</li><li>Hydrate with ORS/electrolytes</li><li>Use paracetamol only (NO aspirin/ibuprofen)</li><li>Get CBC test for platelets</li><li>Watch for warning signs</li></ol><p><strong>Emergency signs:</strong> Severe abdominal pain, persistent vomiting, bleeding</p>"
+          },
+          {
+            "injury": "Road Accident",
+            "keywords": ["road accident", "RTA", "car crash", "bike accident", "highway emergency", "urban accident", "head injury", "polytrauma", "golden hour", "bleeding control", "fracture", "spinal injury", "helmet safety"],
+            "remedy": "<p><strong>At scene:</strong></p><ol><li>Call 108/112 immediately</li><li>Check ABC (Airway-Breathing-Circulation)</li><li>Stop bleeding with direct pressure</li><li>Immobilize neck if head injury suspected</li><li>Keep victim warm</li></ol><p><strong>Don'ts:</strong> Move victim unnecessarily, remove helmet, give food/water</p>"
+          },
+          {
+            "injury": "Food Poisoning",
+            "keywords": ["food poisoning", "stomach infection", "vomiting", "diarrhea", "street food", "contaminated water", "summer stomach", "bacterial infection", "gastroenteritis", "oral rehydration", "khichdi diet", "hydration"],
+            "remedy": "<p><strong>Treatment:</strong></p><ol><li>Oral rehydration (ORS/zinc)</li><li>Bland diet (khichdi, banana, toast)</li><li>Rest digestive system</li><li>Maintain hygiene</li></ol><p><strong>Medical help needed if:</strong> Blood in stool, high fever, dehydration signs</p>"
+          },
+          {
+            "injury": "Electric Shock",
+            "keywords": ["electric shock", "electrocution", "household current", "power line", "urban wiring", "appliance shock", "industrial accident", "voltage burn", "safety tips", "monsoon danger", "exposed wires"],
+            "remedy": "<p><strong>Response:</strong></p><ol><li>Turn off power source</li><li>Use wooden stick to separate victim</li><li>Check breathing/pulse</li><li>Begin CPR if needed</li><li>Cover burns with clean cloth</li></ol><p><strong>Indian context:</strong> 220V household current can be lethal - always check wiring</p>"
+          },
+          {
+            "injury": "Burn (Kitchen)",
+            "keywords": ["kitchen burn", "cooking burn", "oil splatter", "pressure cooker", "steam burn", "hot utensil", "tava injury", "kadai burn", "Indian cooking", "thermal burn", "scald", "first aid"],
+            "remedy": "<p><strong>Treatment:</strong></p><ol><li>Cool with running water (20 mins)</li><li>Remove jewelry nearby</li><li>Cover with clean cloth</li><li>Apply antibiotic ointment</li></ol><p><strong>Common causes:</strong> Pressure cooker steam, hot oil during tadka, clay pots</p>"
+          },
+          {
+            "injury": "Construction Injury",
+            "keywords": ["construction injury", "fall from height", "scaffolding", "cement burn", "industrial accident", "urban development", "laborer safety", "head injury", "safety gear", "building site", "heavy machinery"],
+            "remedy": "<p><strong>First response:</strong></p><ol><li>Ensure scene safety</li><li>Call emergency services</li><li>Immobilize spine if fall involved</li><li>Control bleeding</li><li>For cement burns - wash with water</li></ol><p><strong>Prevention:</strong> Helmets, proper scaffolding, safety training</p>"
+          },
+          {
+            "injury": "Monsoon Injuries",
+            "keywords": ["monsoon", "rainy season", "leptospirosis", "flood", "slip fall", "mosquito disease", "fungal infection", "foot rot", "stagnant water", "urban flooding", "electrocution", "waterborne"],
+            "remedy": "<p><strong>Hazards:</strong></p><ol><li>Avoid flood water (leptospirosis risk)</li><li>Watch for submerged hazards</li><li>Dry feet thoroughly</li><li>Use mosquito protection</li><li>Check electrical wiring</li></ol><p><strong>Common issues:</strong> Slip falls, electric shocks, fungal infections</p>"
+          },
+          {
+            "injury": "Dog Bite",
+            "keywords": ["dog bite", "stray dogs", "rabies risk", "animal bite", "puncture wound", "urban animals", "pet bite", "vaccination", "post-exposure", "street dogs", "first aid"],
+            "remedy": "<p><strong>Immediate actions:</strong></p><ol><li>Wash with soap/water for 15 mins</li><li>Apply antiseptic</li><li>Identify animal if possible</li><li>Seek medical help immediately</li><li>Rabies vaccination if needed</li></ol><p><strong>Indian context:</strong> High rabies risk - never ignore any dog bite</p>"
+          },
+          {
+            "injury": "Scorpion Sting",
+            "keywords": ["scorpion sting", "Indian scorpions", "rural emergency", "painful sting", "neurotoxin", "monsoon hazard", "farmers", "outdoor workers", "first aid", "antivenom"],
+            "remedy": "<p><strong>Treatment:</strong></p><ol><li>Wash area with soap/water</li><li>Apply cold compress</li><li>Keep limb at heart level</li><li>Monitor breathing</li><li>Seek medical help</li></ol><p><strong>Don'ts:</strong> Cut wound, suck venom, apply tourniquet</p>"
+          },
+          {
+            "injury": "Asthma Attack",
+            "keywords": ["asthma", "breathing difficulty", "urban pollution", "dust allergy", "inhaler", "respiratory", "wheezing", "pollution trigger", "winter asthma", "emergency"],
+            "remedy": "<p><strong>During attack:</strong></p><ol><li>Help use inhaler</li><li>Sit upright position</li><li>Loosen tight clothing</li><li>Try pursed-lip breathing</li><li>Call emergency if severe</li></ol><p><strong>Indian triggers:</strong> Pollution, dust, seasonal changes, smoke</p>"
+          },
+          {
+            "injury": "Heart Attack",
+            "keywords": ["heart attack", "chest pain", "cardiac emergency", "urban health", "hypertension", "cholesterol", "smoking risk", "symptoms", "CPR", "emergency"],
+            "remedy": "<p><strong>Signs:</strong> Chest discomfort, arm/jaw pain, sweating, nausea</p><ol><li>Call 108 immediately</li><li>Chew aspirin if available</li><li>Begin CPR if unconscious</li><li>Use AED if accessible</li></ol><p><strong>Indian risk factors:</strong> Stress, sedentary lifestyle, poor diet</p>"
+          },
+          {
+            "injury": "Diabetic Emergency",
+            "keywords": ["diabetes", "hypoglycemia", "low sugar", "high sugar", "urban disease", "symptoms", "management", "emergency", "insulin", "diet"],
+            "remedy": "<p><strong>Low blood sugar:</strong> Give sugar/sweet drink if conscious</p><p><strong>High blood sugar:</strong> Seek medical help</p><ol><li>Monitor consciousness</li><li>Check blood sugar if possible</li><li>Never give insulin to unconscious person</li></ol>"
+          },
+          {
+            "injury": "Fracture (Rural)",
+            "keywords": ["fracture", "broken bone", "rural injury", "agricultural accident", "fall", "immobilization", "splint", "village first aid", "transport"],
+            "remedy": "<p><strong>First aid:</strong></p><ol><li>Immobilize with splint</li><li>Use cloth padding</li><li>Elevate if possible</li><li>Arrange safe transport</li></ol><p><strong>Rural context:</strong> May need bullock cart/jeep transport to hospital</p>"
+          },
+          {
+            "injury": "Chemical Exposure (Industrial)",
+            "keywords": ["chemical exposure", "factory accident", "industrial hazard", "eye splash", "skin burn", "inhalation", "safety", "emergency shower"],
+            "remedy": "<p><strong>Response:</strong></p><ol><li>Remove contaminated clothing</li><li>Flush with water (20 mins)</li><li>For eyes - continuous irrigation</li><li>Seek medical help</li></ol><p><strong>Indian industries at risk:</strong> Textiles, chemicals, manufacturing</p>"
+          },
+          {
+            "injury": "Drowning (Village Pond)",
+            "keywords": ["drowning", "village pond", "water tank", "monsoon", "children", "rescue", "CPR", "rural emergency"],
+            "remedy": "<p><strong>Rescue:</strong></p><ol><li>Call for help</li><li>Use rope/bamboo to reach</li><li>Begin CPR if not breathing</li><li>Keep warm</li></ol><p><strong>Prevention:</strong> Fence ponds, supervise children, swimming lessons</p>"
+          },
+          {
+            "injury": "Firecracker Injury",
+            "keywords": ["firecracker", "Diwali injury", "burns", "eye injury", "hand trauma", "festival hazard", "children", "safety"],
+            "remedy": "<p><strong>Treatment:</strong></p><ol><li>Cool burns with water</li><li>Cover with clean cloth</li><li>For eye injuries - don't rub</li><li>Seek medical help</li></ol><p><strong>Indian context:</strong> Common during Diwali - supervise children</p>"
+          },
+          {
+            "injury": "Heat Exhaustion (Construction Workers)",
+            "keywords": ["heat exhaustion", "construction workers", "outdoor labor", "hydration", "sun exposure", "summer", "safety"],
+            "remedy": "<p><strong>Prevention/Treatment:</strong></p><ol><li>Work during cooler hours</li><li>Wear light clothing</li><li>Drink ORS/buttermilk</li><li>Rest in shade</li></ol><p><strong>At-risk groups:</strong> Laborers, farmers, street vendors</p>"
+          },
+          {
+            "injury": "Pesticide Poisoning",
+            "keywords": ["pesticide", "farmer", "agricultural poisoning", "chemical exposure", "rural emergency", "suicide attempt"],
+            "remedy": "<p><strong>Emergency response:</strong></p><ol><li>Remove from exposure</li><li>Remove contaminated clothes</li><li>Don't induce vomiting</li><li>Transport to hospital</li></ol><p><strong>Indian context:</strong> Common in farming communities</p>"
+          },
+          {
+            "injury": "Traditional Medicine Reaction",
+            "keywords": ["ayurvedic", "herbal", "traditional medicine", "reaction", "overdose", "side effects"],
+            "remedy": "<p><strong>Response:</strong></p><ol><li>Stop medication</li><li>Identify substance</li><li>Seek medical advice</li><li>Bring medicine sample</li></ol>"
+          },
+          {
+            "injury": "Festival Crowd Crush",
+            "keywords": ["crowd crush", "stampede", "festival", "religious gathering", "Kumbh Mela", "safety"],
+            "remedy": "<p><strong>If trapped:</strong></p><ol><li>Move diagonally with crowd</li><li>Protect chest with arms</li><li>Stay on feet if possible</li><li>Help children/elderly</li></ol>"
+          },
+          {
+            "injury": "Train Accident",
+            "keywords": ["train accident", "railway", "derailment", "mass casualty", "urban emergency"],
+            "remedy": "<p><strong>First response:</strong></p><ol><li>Call railway emergency</li><li>Check ABCs</li><li>Control bleeding</li><li>Wait for professional rescue</li></ol>"
+          },
+          {
+            "injury": "Urban Flooding",
+            "keywords": ["urban flood", "monsoon", "waterlogging", "electrocution risk", "waterborne disease"],
+            "remedy": "<p><strong>Safety:</strong></p><ol><li>Avoid walking in floodwater</li><li>Watch for open manholes</li><li>Stay away from power lines</li><li>Boil drinking water</li></ol>"
+          },
+          {
+            "injury": "Textile Factory Accident",
+            "keywords": ["textile factory", "industrial accident", "machine injury", "amputation", "safety"],
+            "remedy": "<p><strong>First aid:</strong></p><ol><li>Turn off machine</li><li>Control bleeding</li><li>Preserve severed part in clean cloth</li><li>Transport to trauma center</li></ol>"
+          },
+          {
+            "injury": "My Creator",
+            "keywords": ["who created you", "who made you", "who is your owner", "creator", "made by", "developer", "about creator"],
+            "remedy": "<p>I was created by Priyanshu Shakya, a Computer Science student at Amity University Noida. 🚑</p><p>My vision is to provide accessible first aid guidance in emergencies, especially for those without medical knowledge.</p>"
+          }
+        ]
+     
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

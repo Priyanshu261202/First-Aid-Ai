@@ -1,0 +1,237 @@
+:root {
+    --primary-color: #1e88e5;
+    --primary-dark: #1565c0;
+    --primary-light: #bbdefb;
+    --secondary-color: #f44336;
+    --text-color: #212121;
+    --text-light: #757575;
+    --background-color: #f5f7fa;
+    --container-color: #ffffff;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: var(--background-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    padding: 0 20px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    text-align: center;
+    padding: 2rem 0;
+}
+
+header h1 {
+    color: var(--primary-color);
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+}
+
+header p {
+    color: var(--text-light);
+    font-size: 1rem;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.search-container {
+    background: var(--container-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 15px var(--shadow-color);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.input-group {
+    display: flex;
+    position: relative;
+}
+
+#search-input {
+    width: 100%;
+    padding: 1rem;
+    padding-right: 50px;
+    border: 2px solid var(--primary-light);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+#search-input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(30, 136, 229, 0.2);
+}
+
+#voice-input {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 50px;
+    background: transparent;
+    border: none;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#voice-input:hover {
+    color: var(--primary-dark);
+}
+
+.primary-button {
+    padding: 1rem;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.primary-button:hover {
+    background: var(--primary-dark);
+}
+
+#voice-feedback {
+    text-align: center;
+    color: var(--primary-color);
+    font-weight: 500;
+    margin-top: 0.5rem;
+}
+
+#typo-suggestion {
+    background: var(--primary-light);
+    padding: 0.8rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+#typo-suggestion span {
+    color: var(--primary-dark);
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+#results-container, #no-results {
+    background: var(--container-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 15px var(--shadow-color);
+}
+
+#injury-title {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+#remedy-content {
+    line-height: 1.6;
+}
+
+#remedy-content ul, #remedy-content ol {
+    padding-left: 1.5rem;
+    margin: 1rem 0;
+}
+
+#remedy-content li {
+    margin-bottom: 0.5rem;
+}
+
+#suggestion-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    margin-top: 1rem;
+}
+
+#suggestion-list li {
+    background: var(--primary-light);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+#suggestion-list li:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+footer {
+    text-align: center;
+    padding: 2rem 0;
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+
+footer p {
+    margin-bottom: 0.5rem;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    .search-container {
+        padding: 1rem;
+    }
+
+    #search-input {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .primary-button {
+        padding: 0.8rem;
+    }
+
+    #results-container, #no-results {
+        padding: 1rem;
+    }
+}
